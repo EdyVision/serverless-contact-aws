@@ -1,0 +1,7 @@
+--timeout 5000
+--reporter list
+--ui bdd
+--exit
+test/bootstrap.test.js
+test/**/*.test.js
+test/**/**/*.test.js

@@ -1,0 +1,46 @@
+# Serverless Contact
+# Powered by the Severless Framework
+# Provider: AWS
+# Owner: EdyVision
+
+service: serverless-contact
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  apiGateway:
+    apiKeySourceType: HEADER
+  environment:
+    NO_REPLY_EMAIL: "noreply@edyvision.com"
+    INFO_EMAIL: "hello@edyvision.com"
+    PINPOINT_APP_ID: "1bf25aebec7f4691b3882ef4d1c92e33"
+    ENV_TYPE: "${self:provider.stage}"
+ 
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "ses:*"
+        - "sns:*"
+      Resource: "*"
+
+functions:
+  submitEmail:
+    handler: handler.submitEmail
+    events:
+        - http:
+            path: system/notifications/submitEmail
+            method: post
+            cors: true
+            private: true
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-prune-plugin
+custom:
+  webpackIncludeModules: true
+  prune:
+    automatic: true
+    number: 3

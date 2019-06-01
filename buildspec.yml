@@ -1,0 +1,18 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - npm install
+  build:
+    commands:
+      - npm test
+  post_build:
+    commands:
+      - mkdir -p build
+      - tar jcf build/commonApi.tar.bz2 .gitignore README.md buildspec.yml package.json serverless.yml db functions services utils handler.js test
+      - serverless -v deploy ${BUILD_TARGET}
+
+artifacts:
+  files:
+    - build*/**
+  discard-paths: yes
