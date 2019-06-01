@@ -24,8 +24,11 @@ export AWS_SECRET_ACCESS_KEY="YOUR_SECRET_ACCESS_KEY"
 
 
 ## Deployment
+To deploy to AWS locally, make sure you have your AWS key and secret in your bash profile and execute the following:
 
-
+```
+sls deploy -v
+```
 
 ## Usage
 
@@ -35,7 +38,9 @@ To execute locally, run the following command (<strong>npm install serverless -g
 sls offline
 ```
 
-Then you can send the following JSON body to http://localhost:3000/system/notifications/submitEmail:
+If running locally, the beginning of your url will be http://localhost:3000
+
+Then you can send the following JSON body to "http://<url>/system/notifications/submitEmail":
 
 ```
 {

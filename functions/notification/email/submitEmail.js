@@ -4,19 +4,16 @@ const AWS = require('aws-sdk');
 
 const ses = new AWS.SES();
 
-let noReplyEmail = process.env.NO_REPLY_EMAIL;
 let infoEmail = process.env.INFO_EMAIL;
 
 /**
  * Submits Email with AWS SES
- * 
  * @param {*} emailParams Required Parameters in Query
  * - toAddresses: Addressee Array
  * - fromAddress: Person Sending Email
  * - emailData: EmailData Array
  * - emailSubject: Respective Email Subject
  * - isInfo: true or false (required)
- * 
  * @returns {Promise} email submission results
  */
 exports.submitEmail = emailParams => {
@@ -77,7 +74,6 @@ exports.submitEmail = emailParams => {
 
 function generateEmailParams(body) {
     const { emails, content, subject, emailType } = body;
-console.log('LOOK' + JSON.stringify(body));
     if (!(emails && content && subject && emailType)) {
         throw new Error(
             "Missing parameters! Make sure to add parameters 'email', 'content', 'subject','emailType'."

@@ -4,6 +4,7 @@
   "description": "Serverless Contact API code",
   "main": "handler.js",
   "scripts": {
+    "start": "sls offline",
     "test": "NODE_ENV=test PORT=9100 ./node_modules/.bin/nyc ./node_modules/.bin/mocha --opts mocha.opts",
     "offline": "sls offline start",
     "precommit": "eslint .",

@@ -1,7 +1,10 @@
 'use strict';
 
-const common = require('../../utils/common.js');
 const emailNotification = require('./email/submitEmail');
+
+// Has to be a registered email in SES, otherwise you will
+// need to get out of sandbox mode
+const email = process.env.INFO_EMAIL;
 
 /**
  * Submits email from system
@@ -12,12 +15,11 @@ const emailNotification = require('./email/submitEmail');
 exports.submitEmail = event => {
     return new Promise(async resolve => {
         let query = JSON.parse(event.body);
-        let emailAddress = "edy.vision18@gmail.com";
 
         if (query.fromAddress && query.subject && query.message) {
             let params = {
-                toAddresses: [emailAddress],
-                fromAddress: emailAddress,
+                toAddresses: [email],
+                fromAddress: query.fromAddress,
                 emailSubject: query.subject,
                 emailData: query.message.split(',')
             };
@@ -56,43 +58,3 @@ exports.submitEmail = event => {
         }
     });
 };
-
-
-
-/**
- * Checks to see where in the event the client placed the query
- * parameters.
- *
- * NOTE: Perhaps this can go in common
- *
- * @param {*} query original event input
- * @returns {*} query parameter object
- */
-function getParameterObject(query) {
-    if (query) {
-        if (
-            !common.isEmpty(query.cognitoUser) ||
-            !common.isEmpty(query.notificationId) ||
-            !common.isEmpty(query.type) ||
-            !common.isEmpty(query.toEmail)
-        ) {
-            return query;
-        } else if (
-            query.headers &&
-            (!common.isEmpty(query.headers.cognitoUser) ||
-                !common.isEmpty(query.headers.type) ||
-                !common.isEmpty(query.headers.toEmail))
-        ) {
-            return query.headers;
-        } else if (
-            query.queryStringParameters &&
-            (!common.isEmpty(query.queryStringParameters.cognitoUser) ||
-                !common.isEmpty(query.queryStringParameters.type) ||
-                !common.isEmpty(query.queryStringParameters.toEmail))
-        ) {
-            return query.queryStringParameters;
-        }
-    } else {
-        return null;
-    }
-}
