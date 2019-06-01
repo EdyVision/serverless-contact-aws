@@ -14,7 +14,7 @@ provider:
     apiKeySourceType: HEADER
   environment:
     NO_REPLY_EMAIL: "noreply@edyvision.com"
-    INFO_EMAIL: "hello@edyvision.com"
+    INFO_EMAIL: "edy.vision18@gmail.com"
     PINPOINT_APP_ID: "1bf25aebec7f4691b3882ef4d1c92e33"
     ENV_TYPE: "${self:provider.stage}"
  
@@ -32,8 +32,8 @@ functions:
         - http:
             path: system/notifications/submitEmail
             method: post
-            cors: true
-            private: true
+            # cors: true
+            # private: true
 
 plugins:
   - serverless-webpack

@@ -7,14 +7,14 @@ const mongoose = require('mongoose');
 let notificationCtrl = require('../../../functions/notification/notificationCtrl');
 
 describe('notificationCtrl getUserNotifications', function notificationCtrlTest() {
-    // TODO: Fix the following connection
+
     before(function(done) {
-        mongoose.connect(process.env.DEV_DB_URL, function(error) {
-            if (error) {
-                console.error('Error while connecting:\n%\n', error);
-            }
-            done();
-        });
+        // mongoose.connect(process.env.DEV_DB_URL, function(error) {
+        //     if (error) {
+        //         console.error('Error while connecting:\n%\n', error);
+        //     }
+        //     done();
+        // });
     });
 
     context('input missing', function() {
