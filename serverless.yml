@@ -1,9 +1,9 @@
-# Serverless Contact
+# Serverless Contact AWS
 # Powered by the Severless Framework
 # Provider: AWS
-# Owner: EdyVision
+# Author: EdyVision
 
-service: serverless-contact
+service: serverless-contact-aws
 
 provider:
   name: aws
@@ -13,10 +13,8 @@ provider:
   apiGateway:
     apiKeySourceType: HEADER
   environment:
-    NO_REPLY_EMAIL: "noreply@edyvision.com"
-    INFO_EMAIL: "hello@edyvision.com"
-    PINPOINT_APP_ID: "1bf25aebec7f4691b3882ef4d1c92e33"
-    ENV_TYPE: "${self:provider.stage}"
+    INFO_EMAIL_ADDRESS: ${env:INFO_EMAIL}
+    ENV_TYPE: ${self:provider.stage}
  
   iamRoleStatements:
     - Effect: "Allow"
@@ -41,6 +39,7 @@ plugins:
   - serverless-prune-plugin
 custom:
   webpackIncludeModules: true
+  # Prune Old Deployments, otherwise you'll max out on storage space
   prune:
     automatic: true
     number: 3
