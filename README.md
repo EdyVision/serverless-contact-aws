@@ -27,7 +27,7 @@ export AWS_SECRET_ACCESS_KEY="YOUR_SECRET_ACCESS_KEY"
 To deploy to AWS locally, make sure you have your AWS key and secret in your bash profile and execute the following:
 
 ```
-sls deploy -v
+INFO_EMAIL="youremail@email.com" sls deploy -v
 ```
 
 ## Usage
@@ -35,7 +35,7 @@ sls deploy -v
 To execute locally, run the following command (<strong>npm install serverless -g<strong> is required):
 
 ```
-sls offline
+INFO_EMAIL="youremail@email.com" sls offline --noAuth
 ```
 
 If running locally, the beginning of your url will be http://localhost:3000
