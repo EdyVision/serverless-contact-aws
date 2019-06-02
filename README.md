@@ -28,7 +28,7 @@ export AWS_SECRET_ACCESS_KEY="YOUR_SECRET_ACCESS_KEY"
 To deploy to AWS locally, make sure you have your AWS key and secret in your bash profile and execute the following:
 
 ```
-INFO_EMAIL="youremail@domain.com" sls deploy -v
+sls deploy -v
 ```
 
 ## Usage
@@ -101,7 +101,8 @@ npm test
 ```
 
 Deploy Commands (set for master)
+In the environment variables, the AWS creds are setup along with the INFO_EMAIL that is grabbed via env.yml.
 
 ```
-INFO_EMAIL="youremail@domain.com" sls deploy -v
+sls deploy -v
 ```

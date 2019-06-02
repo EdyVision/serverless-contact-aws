@@ -8,5 +8,4 @@ jspm_packages
 
 # Environment Vars
 .env
-*env.yml
 *.nyc_output

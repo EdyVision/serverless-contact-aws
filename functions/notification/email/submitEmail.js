@@ -36,6 +36,7 @@ exports.submitEmail = emailParams => {
                 subject: subject,
                 emailType: emailType
             });
+
             await ses
                 .sendEmail(emailParameters)
                 .promise()
@@ -54,7 +55,7 @@ exports.submitEmail = emailParams => {
                     console.log(reason);
                     resolve({
                         statusCode: 500,
-                        body: reason
+                        body: JSON.stringify(reason)
                     });
                 });
         } else {
