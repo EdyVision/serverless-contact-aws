@@ -1,6 +1,6 @@
 # Serverless Contact AWS
-[![Codeship Status for EdyVision/serverless-contact-aws](https://app.codeship.com/projects/ce827ef0-66d2-0137-2194-26f7abe3ee1e/status?branch=master)](https://app.codeship.com/projects/345400)
 [![Build Status](https://travis-ci.org/EdyVision/serverless-contact-aws.png)](https://travis-ci.org/EdyVision/serverless-contact-aws)
+[![Known Vulnerabilities](https://snyk.io/test/github/EdyVision/serverless-contact-aws/badge.svg)](https://snyk.io/test/github/EdyVision/serverless-contact-aws)
 
 A simple contact form api written in NodeJS and built on the Serverless framework. This project leverages AWS SES for email notifications.
 
