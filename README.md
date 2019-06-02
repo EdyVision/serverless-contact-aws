@@ -1,12 +1,13 @@
 # Serverless Contact AWS
 [![Codeship Status for EdyVision/serverless-contact-aws](https://app.codeship.com/projects/ce827ef0-66d2-0137-2194-26f7abe3ee1e/status?branch=master)](https://app.codeship.com/projects/345400)
+[![Build Status](https://travis-ci.org/EdyVision/serverless-contact-aws.png)](https://travis-ci.org/EdyVision/serverless-contact-aws)
 
 A simple contact form api written in NodeJS and built on the Serverless framework. This project leverages AWS SES for email notifications.
 
 ## What Can I Do With This?
-Attach a contact form such as the one in the image below and have people contact you directly from your site, static or not.
+Attach a contact form such as the one in the image below and have people contact you directly from your site.
 
-[insert image]
+<img src="./screenshots/contactForm.png" width="500px"/>
 
 ## Setup
 Have serverless installed locally and on your CI/CD pipeline:
@@ -27,15 +28,15 @@ export AWS_SECRET_ACCESS_KEY="YOUR_SECRET_ACCESS_KEY"
 To deploy to AWS locally, make sure you have your AWS key and secret in your bash profile and execute the following:
 
 ```
-INFO_EMAIL="youremail@email.com" sls deploy -v
+INFO_EMAIL="youremail@domain.com" sls deploy -v
 ```
 
 ## Usage
 
-To execute locally, run the following command (<strong>npm install serverless -g<strong> is required):
+To execute locally, run the following command (<strong>npm install serverless -g</strong> is required):
 
 ```
-INFO_EMAIL="youremail@email.com" sls offline --noAuth
+INFO_EMAIL="youremail@domain.com" sls offline --noAuth
 ```
 
 If running locally, the beginning of your url will be http://localhost:3000
@@ -84,4 +85,23 @@ Unverified Email Error Response
 
 ## CI/CD
 
-Please find the codeship yml config and travisci configs in the project root.
+Please find the travisci settings in the project root. Alternatively, if you would like to use Codeship, the following setup is currently used:
+
+Setup Commands
+
+```
+npm install
+npm i serverless -g
+```
+
+Test Commands
+
+```
+npm test
+```
+
+Deploy Commands (set for master)
+
+```
+INFO_EMAIL="youremail@domain.com" sls deploy -v
+```
