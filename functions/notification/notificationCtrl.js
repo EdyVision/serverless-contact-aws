@@ -6,6 +6,14 @@ const emailNotification = require('./email/submitEmail');
 // need to get out of sandbox mode
 const email = process.env.INFO_EMAIL;
 
+// Headers needed for Locked Down APIs
+const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers':
+        'Origin, X-Requested-With, Content-Type, Accept, X-Api-Key, Authorization',
+    'Access-Control-Allow-Credentials': 'true'
+};
+
 /**
  * Submits email from system
  *
@@ -29,9 +37,7 @@ exports.submitEmail = event => {
                     resolve({
                         statusCode: 202,
                         body: JSON.stringify(response),
-                        headers: {
-                            'Access-Control-Allow-Origin': '*'
-                        }
+                        headers: headers
                     });
                 })
                 .catch(reason => {
@@ -39,9 +45,7 @@ exports.submitEmail = event => {
                     resolve({
                         statusCode: 400,
                         body: JSON.stringify({ error: reason }),
-                        headers: {
-                            'Access-Control-Allow-Origin': '*'
-                        }
+                        headers: headers
                     });
                 });
         } else {
@@ -51,9 +55,7 @@ exports.submitEmail = event => {
                     error:
                         'Email submission is missing parameters. fromAddress, subject, and message are all required.'
                 }),
-                headers: {
-                    'Access-Control-Allow-Origin': '*'
-                }
+                headers: headers
             });
         }
     });

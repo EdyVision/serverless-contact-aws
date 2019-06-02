@@ -6,6 +6,13 @@ const ses = new AWS.SES();
 
 let infoEmail = process.env.INFO_EMAIL;
 
+const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers':
+        'Origin, X-Requested-With, Content-Type, Accept, X-Api-Key, Authorization',
+    'Access-Control-Allow-Credentials': 'true'
+};
+
 /**
  * Submits Email with AWS SES
  * @param {*} emailParams Required Parameters in Query
@@ -44,11 +51,7 @@ exports.submitEmail = emailParams => {
                     resolve({
                         statusCode: 201,
                         body: JSON.stringify(response),
-                        headers: {
-                            'Access-Control-Allow-Origin': '*',
-                            'Access-Control-Allow-Headers': 'x-requested-with',
-                            'Access-Control-Allow-Credentials': true
-                        }
+                        headers: headers
                     });
                 })
                 .catch(reason => {
@@ -62,11 +65,7 @@ exports.submitEmail = emailParams => {
             resp.errors = 'Parameters cannot be null!';
             resolve({
                 statusCode: 400,
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'x-requested-with',
-                    'Access-Control-Allow-Credentials': true
-                },
+                headers: headers,
                 body: JSON.stringify(resp.errors)
             });
         }
