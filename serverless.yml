@@ -12,9 +12,7 @@ provider:
   region: us-east-1
   apiGateway:
     apiKeySourceType: HEADER
-  environment:
-    INFO_EMAIL_ADDRESS: ${env:INFO_EMAIL}
-    ENV_TYPE: ${self:provider.stage}
+  environment: ${file(env.yml):${self:custom.stage}}
  
   iamRoleStatements:
     - Effect: "Allow"
@@ -38,6 +36,7 @@ plugins:
   - serverless-offline
   - serverless-prune-plugin
 custom:
+  stage: "${opt:stage, self:provider.stage}"
   webpackIncludeModules: true
   # Prune Old Deployments, otherwise you'll max out on storage space
   prune:

@@ -4,7 +4,7 @@ const emailNotification = require('./email/submitEmail');
 
 // Has to be a registered email in SES, otherwise you will
 // need to get out of sandbox mode
-const email = process.env.INFO_EMAIL_ADDRESS;
+const email = process.env.INFO_EMAIL;
 
 /**
  * Submits email from system
