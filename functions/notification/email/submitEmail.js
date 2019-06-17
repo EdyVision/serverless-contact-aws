@@ -36,9 +36,11 @@ exports.submitEmail = emailParams => {
             let emailData = emailParams.emailData;
             let subject = emailParams.emailSubject;
             let emailType = infoEmail;
+            let replyTo = emailParams.fromAddress;
 
             let emailParameters = generateEmailParams({
                 emails: toAddresses,
+                replyTo: replyTo,
                 content: emailData.join('\r\n'),
                 subject: subject,
                 emailType: emailType
@@ -73,7 +75,7 @@ exports.submitEmail = emailParams => {
 };
 
 function generateEmailParams(body) {
-    const { emails, content, subject, emailType } = body;
+    const { emails, content, subject, emailType, replyTo } = body;
     if (!(emails && content && subject && emailType)) {
         throw new Error(
             "Missing parameters! Make sure to add parameters 'email', 'content', 'subject','emailType'."
@@ -85,7 +87,7 @@ function generateEmailParams(body) {
         Destination: {
             ToAddresses: emails
         },
-        ReplyToAddresses: [emailType],
+        ReplyToAddresses: [replyTo],
         Message: {
             Body: {
                 Text: {
