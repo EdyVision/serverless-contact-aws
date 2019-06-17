@@ -6,13 +6,6 @@ const ses = new AWS.SES();
 
 let infoEmail = process.env.INFO_EMAIL;
 
-const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers':
-        'Origin, X-Requested-With, Content-Type, Accept, X-Api-Key, Authorization',
-    'Access-Control-Allow-Credentials': 'true'
-};
-
 /**
  * Submits Email with AWS SES
  * @param {*} emailParams Required Parameters in Query
@@ -20,7 +13,7 @@ const headers = {
  * - fromAddress: Person Sending Email
  * - emailData: EmailData Array
  * - emailSubject: Respective Email Subject
- * - isInfo: true or false (required)
+ * - infoEmail: email clients respond to (e.g. name@domain.com)
  * @returns {Promise} email submission results
  */
 exports.submitEmail = emailParams => {
@@ -52,8 +45,7 @@ exports.submitEmail = emailParams => {
                 .then(response => {
                     resolve({
                         statusCode: 201,
-                        body: JSON.stringify(response),
-                        headers: headers
+                        body: JSON.stringify(response)
                     });
                 })
                 .catch(reason => {

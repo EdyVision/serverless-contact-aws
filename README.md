@@ -39,6 +39,12 @@ To execute locally, run the following command (<strong>npm install serverless -g
 INFO_EMAIL="youremail@domain.com" sls offline --noAuth
 ```
 
+or
+
+```
+npm start
+```
+
 If running locally, the beginning of your url will be http://localhost:3000
 
 Then you can send the following JSON body to "http://<url>/system/notifications/submitEmail":
