@@ -59,7 +59,6 @@ exports.submitEmail = emailParams => {
             resp.errors = 'Parameters cannot be null!';
             resolve({
                 statusCode: 400,
-                headers: headers,
                 body: JSON.stringify(resp.errors)
             });
         }
