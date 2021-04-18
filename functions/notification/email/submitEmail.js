@@ -4,8 +4,6 @@ const AWS = require('aws-sdk');
 
 const ses = new AWS.SES();
 
-let infoEmail = process.env.INFO_EMAIL;
-
 /**
  * Submits Email with AWS SES
  * @param {*} emailParams Required Parameters in Query
@@ -28,7 +26,7 @@ exports.submitEmail = emailParams => {
             let toAddresses = emailParams.toAddresses;
             let emailData = emailParams.emailData;
             let subject = emailParams.emailSubject;
-            let emailType = infoEmail;
+            let emailType = emailParams.fromAddress;
             let replyTo = emailParams.fromAddress;
 
             let emailParameters = generateEmailParams({
