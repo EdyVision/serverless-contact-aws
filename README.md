@@ -35,9 +35,6 @@ sls deploy -v
 
 To execute locally, run the following command (<strong>npm install serverless -g</strong> is required):
 
-```
-INFO_EMAIL="youremail@domain.com" sls offline --noAuth
-```
 
 or
 
@@ -107,7 +104,7 @@ npm test
 ```
 
 Deploy Commands (set for master)
-In the environment variables, the AWS creds are setup along with the INFO_EMAIL that is grabbed via env.yml.
+In the environment variables, the AWS creds are setup.
 
 ```
 sls deploy -v

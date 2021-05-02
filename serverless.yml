@@ -12,7 +12,6 @@ provider:
   region: us-east-1
   apiGateway:
     apiKeySourceType: HEADER
-  environment: ${file(env.yml):${self:custom.stage}}
  
   iamRoleStatements:
     - Effect: "Allow"

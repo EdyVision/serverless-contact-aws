@@ -4,6 +4,13 @@ const AWS = require('aws-sdk');
 
 const ses = new AWS.SES();
 
+const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers':
+        'Origin, X-Requested-With, Content-Type, Accept, X-Api-Key, Authorization',
+    'Access-Control-Allow-Credentials': 'true'
+};
+
 /**
  * Submits Email with AWS SES
  * @param {*} emailParams Required Parameters in Query
@@ -42,22 +49,25 @@ exports.submitEmail = emailParams => {
                 .promise()
                 .then(response => {
                     resolve({
-                        statusCode: 201,
-                        body: JSON.stringify(response)
+                        statusCode: 200,
+                        body: JSON.stringify(response),
+                        headers: headers
                     });
                 })
                 .catch(reason => {
                     console.log(reason);
                     resolve({
                         statusCode: 500,
-                        body: JSON.stringify(reason)
+                        body: JSON.stringify(reason),
+                        headers: headers
                     });
                 });
         } else {
             resp.errors = 'Parameters cannot be null!';
             resolve({
                 statusCode: 400,
-                body: JSON.stringify(resp.errors)
+                body: JSON.stringify(resp.errors),
+                headers: headers
             });
         }
     });

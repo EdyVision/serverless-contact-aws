@@ -2,16 +2,11 @@
 
 const emailNotification = require('./email/submitEmail');
 
-// Has to be a registered email in SES, otherwise you will
-// need to get out of sandbox mode
-const email = process.env.INFO_EMAIL;
-
 // Headers needed for Locked Down APIs
 const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers':
-        'Origin, X-Requested-With, Content-Type, Accept, X-Api-Key, Authorization',
-    'Access-Control-Allow-Credentials': 'true'
+        'X-Requested-With, Content-Type, Accept, X-Api-Key'
 };
 
 //#region Function messages
@@ -50,8 +45,13 @@ exports.submitEmail = event => {
     return new Promise(async resolve => {
         let query = JSON.parse(event.body);
 
-        if (query.fromAddress && query.subject && query.message) {
-            if (!validateEmail(email)) {
+        if (
+            query.fromAddress &&
+            query.subject &&
+            query.message &&
+            query.toAddress
+        ) {
+            if (!validateEmail(query.toAddress)) {
                 resolve({
                     statusCode: 400,
                     body: JSON.stringify({ error: invalidEmailMsg }),
@@ -60,7 +60,7 @@ exports.submitEmail = event => {
             }
 
             let params = {
-                toAddresses: [email],
+                toAddresses: [query.toAddress],
                 fromAddress: query.fromAddress,
                 emailSubject: query.subject,
                 emailData: query.message.split(',')
@@ -70,7 +70,7 @@ exports.submitEmail = event => {
                 .submitEmail(params)
                 .then(() => {
                     resolve({
-                        statusCode: 202,
+                        statusCode: 200,
                         body: JSON.stringify({ message: successMsg }),
                         headers: headers
                     });
