@@ -6,7 +6,9 @@
   "scripts": {
     "start": "sls offline --noAuth",
     "test": "NODE_ENV=test PORT=9100 ./node_modules/.bin/nyc ./node_modules/.bin/mocha --opts mocha.opts",
-    "offline": "sls offline start"
+    "offline": "sls offline start",
+    "precommit": "eslint .",
+    "pretest": "eslint --ignore-path .gitignore ."
   },
   "repository": {
     "type": "git",

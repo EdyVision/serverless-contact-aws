@@ -1,3 +1,4 @@
+/* eslint-disable no-async-promise-executor */
 'use strict';
 
 const notifications = require('./functions/notification/notificationCtrl');

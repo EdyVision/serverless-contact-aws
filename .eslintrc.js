@@ -12,7 +12,7 @@ module.exports = {
                 tabWidth: 4
             }
         ],
-        'no-console': 1, // disallow use of console (off by default in the node environment)
+        'no-console': 0, // disallow use of console (off by default in the node environment)
         'no-constant-condition': 2, // disallow use of constant expressions in conditions
         'no-control-regex': 2, // disallow control characters in regular expressions
         'no-debugger': 2, // disallow use of debugger
